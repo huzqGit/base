@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse.ant.import?>
+<project basedir="." default="jars" >
+	<target name="jars">
+		<jar jarfile="${dest.dir}/${ant.project.name}-${version}.jar" basedir="bin"/>
+	</target>	
+</project>

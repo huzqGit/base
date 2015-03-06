@@ -1,0 +1,24 @@
+#
+#
+#
+application/pdf pdf PDF
+application/vnd.ms-excel xls XLS
+application/msword doc DOC
+application/vnd.ms-powerpoint ppt PPT
+image/x-bmp bmp BMP
+application/vnd.oasis.opendocument.text odt ODT
+application/vnd.oasis.opendocument.text-template ott OTT
+application/vnd.oasis.opendocument.text-web oth OTH
+application/vnd.oasis.opendocument.text-master odm ODM
+application/vnd.oasis.opendocument.graphics odg ODG
+application/vnd.oasis.opendocument.graphics-template otg OTG
+application/vnd.oasis.opendocument.presentation odp ODP
+application/vnd.oasis.opendocument.presentation-template otp OTP
+application/vnd.oasis.opendocument.spreadsheet ods ODS
+application/vnd.oasis.opendocument.spreadsheet-template ots OTS
+application/vnd.oasis.opendocument.chart odc ODC
+application/vnd.oasis.opendocument.formula odf ODF
+application/vnd.oasis.opendocument.database odb ODB
+application/vnd.oasis.opendocument.image odi ODI
+application/vnd.openofficeorg.extension oxt OXT
+application/vnd.ms-outlook msg MSG

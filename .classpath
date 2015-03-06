@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/commons/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-betwixt.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-chain.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-codec.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-collections.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-configuration.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-fileupload.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-io.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-lang.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-math.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-validator.jar"/>
+	<classpathentry kind="lib" path="lib/commons/slf4j-api-1.7.5.jar"/>
+	<classpathentry kind="lib" path="lib/commons/slf4j-log4j12-1.7.5.jar"/>
+	<classpathentry kind="lib" path="lib/other/servlet-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

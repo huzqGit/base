@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="base">
+    <property environment="env"/>
+    <property name="sport.location" value="../sport"/>
+    <property name="zx-flow.location" value="../zx-flow"/>
+    <property name="ECLIPSE_HOME" value="E:/Learning/soft/eclipse"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.5"/>
+    <property name="source" value="1.5"/>
+	<import file="build-jar.xml"/>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="base.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="lib/hibernate/hibernate-annotations.jar"/>
+        <pathelement location="lib/JavaMail/activation.jar"/>
+        <pathelement location="lib/JavaMail/mail.jar"/>
+        <pathelement location="lib/other/jsp-api.jar"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <pathelement location="lib/other/proxool-cglib.jar"/>
+        <pathelement location="lib/struts/struts.jar"/>
+        <pathelement location="lib/other/servlet-api.jar"/>
+        <pathelement location="lib/other/jgraph.jar"/>
+        <pathelement location="lib/struts/jakarta-oro.jar"/>
+        <pathelement location="lib/commons/commons-beanutils.jar"/>
+        <pathelement location="lib/commons/commons-codec.jar"/>
+        <pathelement location="lib/commons/commons-collections.jar"/>
+        <pathelement location="lib/commons/commons-email.jar"/>
+        <pathelement location="lib/commons/commons-io.jar"/>
+        <pathelement location="lib/commons/commons-lang.jar"/>
+        <pathelement location="lib/commons/commons-pool.jar"/>
+        <pathelement location="lib/commons/httpclient.jar"/>
+        <pathelement location="lib/commons/httpcore.jar"/>
+        <pathelement location="lib/hibernate/antlr.jar"/>
+        <pathelement location="lib/hibernate/dom4j.jar"/>
+        <pathelement location="lib/hibernate/hibernate.jar"/>
+        <pathelement location="lib/hibernate/javassist.jar"/>
+        <pathelement location="lib/hibernate/jcl-over-slf4j.jar"/>
+        <pathelement location="lib/hibernate/jta.jar"/>
+        <pathelement location="lib/hibernate/slf4j-api.jar"/>
+        <pathelement location="lib/hibernate/slf4j-log4j.jar"/>
+        <pathelement location="lib/other/bcel.jar"/>
+        <pathelement location="lib/other/log4j.jar"/>
+        <pathelement location="lib/other/ojdbc.jar"/>
+        <pathelement location="lib/other/proxool.jar"/>
+        <pathelement location="lib/commons/commons-configuration.jar"/>
+        <pathelement location="lib/commons/commons-digester.jar"/>
+        <pathelement location="lib/commons/commons-math.jar"/>
+        <pathelement location="lib/spring/ehcache-1.1.jar"/>
+        <pathelement location="lib/spring/spring-aspects.jar"/>
+        <pathelement location="lib/spring/spring-mock.jar"/>
+        <pathelement location="lib/spring/spring-webmvc-struts.jar"/>
+        <pathelement location="lib/spring/spring-webmvc.jar"/>
+        <pathelement location="lib/spring/spring.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="base.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
+        <ant antfile="build.xml" dir="${sport.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${sport.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+        <ant antfile="build.xml" dir="${zx-flow.location}" inheritAll="false" target="clean"/>
+        <ant antfile="build.xml" dir="${zx-flow.location}" inheritAll="false" target="build">
+            <propertyset>
+                <propertyref name="build.compiler"/>
+            </propertyset>
+        </ant>
+    </target>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="DateUtils">
+        <java classname="com.common.tools.DateUtils" failonerror="true" fork="yes">
+            <classpath refid="base.classpath"/>
+        </java>
+    </target>
+</project>
