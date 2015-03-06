@@ -14,7 +14,7 @@ public abstract class BaseCompositePK implements Serializable {
 	private static final Logger log = LoggerFactory.getLogger(BaseCompositePK.class);
 	private Field fields[]; 
 	
-	public BaseCompositePK() { 
+	public BaseCompositePK() {
 		fields = this.getClass().getDeclaredFields();
 	}
 
