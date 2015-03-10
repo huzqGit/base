@@ -16,6 +16,12 @@
 	<classpathentry kind="lib" path="lib/commons/slf4j-api-1.7.5.jar"/>
 	<classpathentry kind="lib" path="lib/commons/slf4j-log4j12-1.7.5.jar"/>
 	<classpathentry kind="lib" path="lib/other/servlet-api.jar"/>
+	<classpathentry kind="lib" path="lib/other/spring-context-support-3.1.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/other/spring-tx-3.1.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/other/spring-beans-3.1.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/other/mybatis-3.2.3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="lib/other/mybatis-spring-1.2.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
