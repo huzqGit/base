@@ -1,6 +1,7 @@
 package com.common.dao.impl;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,75 +9,71 @@ import javax.annotation.Resource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 
+import com.common.exception.CreateException;
+import com.common.exception.DAOException;
+import com.common.exception.DataNotFoundException;
+import com.common.exception.DeleteException;
+import com.common.exception.UpdateException;
+
 public class GenericMyBatisDAOSupport<T, PK extends Serializable> extends SqlSessionDaoSupport {
+	
 	@Resource(name="sqlSessionFactory")    
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory)
 	{
 		super.setSqlSessionFactory(sqlSessionFactory);
     }
 	
-	/**
-	 * 添加记录
-	 * @param value 需要执行的语句名称
-	 * @param obj   需要传入的参数对象
-	 */
-	public void save(String value,T entity)
-	{
-		super.getSqlSession().insert(value, entity);
-	}
+	/** 实体类 */
+	private Class<T> persistentClass;
+	
+	protected GenericMyBatisDAOSupport() {
+	    super();
+	    this.persistentClass = (Class<T>)((ParameterizedType) getClass().
+	                                       getGenericSuperclass()).getActualTypeArguments()[0];
+    }
 	
 	/**
-	 * 删除记录	
-	 * @param value 需要执行的语句名称
-	 * @param obj   需要传入的参数对象
+	 * 添加记录
 	 */
-	public void delete(String value, T entity)
-	{
-		super.getSqlSession().delete(value, entity);
+	public void save(T entity) throws DAOException, CreateException {
+		super.getSqlSession().insert(getClassName(entity) + ".save", entity);
 	}
 	
 	/**
 	 * 修改记录
-	 * @param value 需要执行的语句名称
-	 * @param obj   需要传入的参数对象
 	 */
-	public void update(String value, T entity)
-	{
-		super.getSqlSession().update(value, entity);
+	public void update(T entity) throws DAOException, UpdateException {
+		super.getSqlSession().update(getClassName(entity) + ".update", entity);
 	}
 	
 	/**
-	 * 查询单条记录
-	 * @param value 需要执行的语句名称
-	 * @param obj   需要传入的参数对象
-	 * @return      Object
+	 * 删除记录	
 	 */
-	public T queryObject(String value, T entity)
-	{
-		return super.getSqlSession().selectOne(value, entity);
+	public void delete(T entity) throws DAOException, DeleteException {
+		super.getSqlSession().delete(getClassName(entity)  + ".delete", entity);
 	}
 	
-	/**
-	 * 查询列表【用于条件查询】
-	 * 
-	 * @param value 需要执行的语句名称
-	 * @param obj   需要传入的参数对象
-	 * @return      List
-	 */
-	public List queryObjects(String value, T entity)
-	{
-		return super.getSqlSession().selectList(value, entity);
+	public T findByPK(PK pk) throws DAOException, DataNotFoundException {
+		if (pk == null) {
+			throw new DataNotFoundException(persistentClass + " pk is null.");
+		}
 		
+		T result = (T) super.getSqlSession().selectOne("findByPK", pk);
+		
+		if (result == null) {
+			throw new DataNotFoundException("Load " + persistentClass
+					+ " data by PK(" + pk + ") not find.");
+		}
+		return result;
 	}
 	
-	/**
-	 * 查询列表【用于无条件查询】
-	 * 
-	 * @param value  需要执行的语句名称
-	 * @return       List
-	 */
-	public List queryObjects(String value)
-	{
-		return super.getSqlSession().selectList(value);
+	public List<T> getAllEntities() throws DAOException {
+		return super.getSqlSession().selectList("all");
 	}
+	
+	private String getClassName(T entity) {
+		if (entity == null) return "";
+		return entity.getClass().getSimpleName().toLowerCase();
+	}
+	
 }
