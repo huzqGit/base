@@ -7,11 +7,13 @@ public class ColorUtils {
 		String r, g, b;
 		Random random = new Random();
 		r = Integer.toHexString(random.nextInt(256)).toUpperCase();
+		g = Integer.toHexString(random.nextInt(256)).toUpperCase();
 		b = Integer.toHexString(random.nextInt(256)).toUpperCase();
-		String d = "";
-		r = r.length() == 1 ? "0" + r : r; 
+
+		r = r.length() == 1 ? "0" + r : r;
+		g = g.length() == 1 ? "0" + g : g;
 		b = b.length() == 1 ? "0" + b : b;
 
-		return r + b;
+		return r + g + b;
 	}
 }
