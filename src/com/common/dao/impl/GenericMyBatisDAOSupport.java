@@ -8,6 +8,10 @@ import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import sun.util.logging.resources.logging;
 
 import com.common.exception.CreateException;
 import com.common.exception.DAOException;
@@ -16,6 +20,13 @@ import com.common.exception.DeleteException;
 import com.common.exception.UpdateException;
 
 public class GenericMyBatisDAOSupport<T, PK extends Serializable> extends SqlSessionDaoSupport {
+	private static Logger log = LoggerFactory.getLogger(GenericMyBatisDAOSupport.class);
+	
+	private static String SQLID_SAVE = "save";
+	private static String SQLID_UPDATE = "update";
+	private static String SQLID_DELETE = "delete";
+	private static String SQLID_FINDBYPK = "findByPk";
+	private static String SQLID_ALL = "all";
 	
 	@Resource(name="sqlSessionFactory")    
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory)
@@ -36,21 +47,21 @@ public class GenericMyBatisDAOSupport<T, PK extends Serializable> extends SqlSes
 	 * 添加记录
 	 */
 	public void save(T entity) throws DAOException, CreateException {
-		super.getSqlSession().insert(getClassName(entity) + ".save", entity);
+		super.getSqlSession().insert(SQLID_SAVE, entity);
 	}
 	
 	/**
 	 * 修改记录
 	 */
 	public void update(T entity) throws DAOException, UpdateException {
-		super.getSqlSession().update(getClassName(entity) + ".update", entity);
+		super.getSqlSession().update(SQLID_UPDATE, entity);
 	}
 	
 	/**
 	 * 删除记录	
 	 */
 	public void delete(T entity) throws DAOException, DeleteException {
-		super.getSqlSession().delete(getClassName(entity)  + ".delete", entity);
+		super.getSqlSession().delete(SQLID_DELETE, entity);
 	}
 	
 	public T findByPK(PK pk) throws DAOException, DataNotFoundException {
@@ -58,7 +69,7 @@ public class GenericMyBatisDAOSupport<T, PK extends Serializable> extends SqlSes
 			throw new DataNotFoundException(persistentClass + " pk is null.");
 		}
 		
-		T result = (T) super.getSqlSession().selectOne("findByPK", pk);
+		T result = (T) super.getSqlSession().selectOne(SQLID_FINDBYPK, pk);
 		
 		if (result == null) {
 			throw new DataNotFoundException("Load " + persistentClass
@@ -68,12 +79,7 @@ public class GenericMyBatisDAOSupport<T, PK extends Serializable> extends SqlSes
 	}
 	
 	public List<T> getAllEntities() throws DAOException {
-		return super.getSqlSession().selectList("all");
-	}
-	
-	private String getClassName(T entity) {
-		if (entity == null) return "";
-		return entity.getClass().getSimpleName().toLowerCase();
+		return super.getSqlSession().selectList(SQLID_ALL);
 	}
 	
 }
