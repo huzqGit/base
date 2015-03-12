@@ -60,8 +60,8 @@ public class GenericMyBatisDAOSupport<T, PK extends Serializable> extends SqlSes
 	/**
 	 * 删除记录	
 	 */
-	public void delete(T entity) throws DAOException, DeleteException {
-		super.getSqlSession().delete(SQLID_DELETE, entity);
+	public void delete(PK pk) throws DAOException, DeleteException {
+		super.getSqlSession().delete(SQLID_DELETE, pk);
 	}
 	
 	public T findByPK(PK pk) throws DAOException, DataNotFoundException {

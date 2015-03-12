@@ -16,7 +16,7 @@ public interface GenericService<T, PK extends Serializable> {
 	void update(T entity) throws DAOException, UpdateException,
 			DataNotFoundException;
 
-	void delete(T entity) throws DAOException, DeleteException,
+	void delete(PK pk) throws DAOException, DeleteException,
 			DataNotFoundException;
 	
 	T findByPK(PK pk) throws DAOException, DataNotFoundException;

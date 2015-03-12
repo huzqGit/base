@@ -33,9 +33,9 @@ public abstract class GenericServiceImpl<T, PK extends Serializable> implements 
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor={DAOException.class, DeleteException.class, DataNotFoundException.class})
-	public void delete(T entity) throws DAOException, DeleteException,
+	public void delete(PK pk) throws DAOException, DeleteException,
 			DataNotFoundException {
-		this.getGenericDAO().delete(entity);
+		this.getGenericDAO().delete(pk);
 	}
 	
 	public T findByPK(PK pk) throws DAOException, DataNotFoundException {
