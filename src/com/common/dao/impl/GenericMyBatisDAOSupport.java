@@ -11,8 +11,6 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import sun.util.logging.resources.logging;
-
 import com.common.exception.CreateException;
 import com.common.exception.DAOException;
 import com.common.exception.DataNotFoundException;
@@ -21,12 +19,14 @@ import com.common.exception.UpdateException;
 
 public class GenericMyBatisDAOSupport<T, PK extends Serializable> extends SqlSessionDaoSupport {
 	private static Logger log = LoggerFactory.getLogger(GenericMyBatisDAOSupport.class);
-	
-	private static String SQLID_SAVE = "save";
-	private static String SQLID_UPDATE = "update";
-	private static String SQLID_DELETE = "delete";
-	private static String SQLID_FINDBYPK = "findByPk";
-	private static String SQLID_ALL = "all";
+	private static final String SQLID_SAVE = "save";
+	private static final String SQLID_UPDATE = "update";
+	private static final String SQLID_DELETE = "delete";
+	private static final String SQLID_FINDBYPK = "findByPk";
+	private static final String SQLID_ALL = "all";
+	private static final String SQLID_PAGE = "pageing";
+	private static final String DESC = "desc";
+	private static final String ASC = "asc";
 	
 	@Resource(name="sqlSessionFactory")    
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory)
@@ -80,6 +80,13 @@ public class GenericMyBatisDAOSupport<T, PK extends Serializable> extends SqlSes
 	
 	public List<T> getAllEntities() throws DAOException {
 		return super.getSqlSession().selectList(SQLID_ALL);
+	}
+	
+	public List<T> getPageingEntities(String key, int pageIndex, int pageSize,
+			String sortField, String sortOrder) throws DAOException {
+		int start = pageIndex * pageSize, end = start + pageSize;
+		if (DESC.equals(sortOrder) == false) sortOrder = ASC;
+		return getSqlSession().selectList(SQLID_PAGE, new Object[]{start, end, sortField, sortOrder});
 	}
 	
 }
