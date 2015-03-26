@@ -13,6 +13,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.common.bean.BaseEntity;
 import com.common.exception.CreateException;
 import com.common.exception.DAOException;
 import com.common.exception.DataNotFoundException;
@@ -24,7 +25,7 @@ public class GenericMyBatisDAOSupport<T, PK extends Serializable> extends SqlSes
 	private static final String SQLID_SAVE = ".save";
 	private static final String SQLID_UPDATE = ".update";
 	private static final String SQLID_DELETE = ".delete";
-	private static final String SQLID_FINDBYPK = ".findByPk";
+	private static final String SQLID_FINDBYPK = ".findByPK";
 	private static final String SQLID_ALL = ".all";
 	private static final String SQLID_PAGE = ".pageing";
 	private static final String DESC = "desc";
