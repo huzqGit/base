@@ -2,6 +2,7 @@ package com.common.service;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import com.common.exception.CreateException;
 import com.common.exception.DAOException;
@@ -22,5 +23,8 @@ public interface GenericService<T, PK extends Serializable> {
 	T findByPK(PK pk) throws DAOException, DataNotFoundException;
 	
 	List<T> getAllEntities() throws DAOException;
+	
+	List<T> getPageingEntities(int pageIndex, int pageSize, String sortField,
+			String sortOrder, Map paramMap) throws DAOException;
 
 }
