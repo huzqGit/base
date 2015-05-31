@@ -2,6 +2,7 @@ package com.common.service.impl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +45,11 @@ public abstract class GenericServiceImpl<T, PK extends Serializable> implements 
 	
 	public List<T> getAllEntities() throws DAOException {
 		return this.getGenericDAO().getAllEntities();
+	}
+	
+	public List<T> getPageingEntities(int pageIndex, int pageSize, String sortField,
+			String sortOrder, Map paramMap) throws DAOException {
+		return this.getGenericDAO().getPageingEntities(pageIndex, pageSize, sortField, sortOrder, paramMap);
 	}
 
 }
