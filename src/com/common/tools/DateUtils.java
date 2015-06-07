@@ -37,6 +37,16 @@ public class DateUtils {
 		}
 	}
 	
+	public static Date parseDateFullPattern(String date) {
+		try {
+			return org.apache.commons.lang.time.DateUtils.parseDate(date,
+					new String[] { timestampPattern,datePattern,yearMonthPattern,timePattern});
+		} catch (Exception ex) {
+			log.error("Date format occurs error .", ex);
+			return null;
+		}
+	}
+	
 	/**
 	 * format the date to 'yyyy-mm'
 	 * 

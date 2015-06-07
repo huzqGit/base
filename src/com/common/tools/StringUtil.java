@@ -714,5 +714,42 @@ public final class StringUtil {
 		String[] cc=StringUtil.tokenize1(a, ";", true, true);
 		System.out.println(cc[2]);
 	}
+	
+
+	
+	/**
+	 * 首字母转小写
+	 * @author zkongbai
+	 * @date 2015年6月7日  下午3:46:14
+	 * @version 1.0
+	 * @param s
+	 * @return
+	 */
+	public static String toLowerCaseFirstOne(String s){
+		if(s == null) return "";
+    	s=s.trim();
+    	if(s.length()<=0) return "";
+        if(Character.isLowerCase(s.charAt(0)))
+            return s;
+        else
+            return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
+    }
+    /**
+     * 首字母转大写
+     * @author zkongbai
+     * @date 2015年6月7日  下午3:46:21
+     * @version 1.0
+     * @param s
+     * @return
+     */
+    public static String toUpperCaseFirstOne(String s){
+    	if(s == null) return "";
+    	s=s.trim();
+    	if(s.length()<=0) return "";
+        if(Character.isUpperCase(s.charAt(0)))
+            return s;
+        else
+            return (new StringBuilder()).append(Character.toUpperCase(s.charAt(0))).append(s.substring(1)).toString();
+    }
 
 }
