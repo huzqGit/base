@@ -23,5 +23,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="lib/other/mybatis-spring-1.2.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/other/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/other/gson-2.2.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
