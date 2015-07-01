@@ -1,5 +1,8 @@
 package com.common.tools;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import javax.servlet.http.HttpServletRequest;
 
 public class IpUtil {
@@ -22,6 +25,18 @@ public class IpUtil {
 		}
 		if (ip.equals("0:0:0:0:0:0:0:1")) {
 			ip = "本地";
+		}
+		return ip;
+	}
+	
+	public static String getIp() {
+		String ip = null;
+		try {
+			InetAddress address = InetAddress.getLocalHost();
+			ip = address.getHostAddress();
+
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
 		}
 		return ip;
 	}

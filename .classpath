@@ -26,5 +26,6 @@
 	<classpathentry kind="lib" path="lib/other/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/other/gson-2.2.4.jar"/>
 	<classpathentry kind="lib" path="lib/commons/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/other/spring-web-3.1.4.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
