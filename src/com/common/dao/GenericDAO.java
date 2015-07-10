@@ -21,12 +21,12 @@ public interface GenericDAO<T, PK extends Serializable> {
 
 	void delete(PK pk) throws DAOException, DeleteException,
 			DataNotFoundException;
-	
+
 	T findByPK(PK pk) throws DAOException, DataNotFoundException;
-	
+
 	List<T> getAllEntities() throws DAOException;
-	
+
 	List<T> getPageingEntities(int pageIndex, int pageSize, String sortField,
 			String sortOrder, Map paramMap) throws DAOException;
-	
+
 }
